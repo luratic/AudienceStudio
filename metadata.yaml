@@ -1,4 +1,5 @@
 versions:
+  - sha: f8cfe2c90377303f669e4ff1161cbd6e92ebf06a
   - sha: 66a18fefe00237f84f7b7b0825aa81a03c057283
     changeNotes: Updated logo.
   - sha: 476ade49cdbcfc2c100b5e9d124c29d54e036f07
