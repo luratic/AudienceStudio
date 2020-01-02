@@ -11,7 +11,9 @@ ___INFO___
 {
   "displayName": "Audience Studio",
   "description": "Formerly Salesforce DMP, Audience Studio can help you gain deep insights by unifying and capturing your data to strengthen customer relationships across every touchpoint with powerful data management",
-  "categories": ["MARKETING"],
+  "categories": [
+    "MARKETING"
+  ],
   "securityGroups": [],
   "id": "cvt_temp_public_id",
   "type": "TAG",
@@ -455,6 +457,7 @@ const onSuccess = () => {
 
 const onFailure = () => {
 	log('Failed to load Audience Studio Control Tag');
+  	data.gtmOnFailure();
 };
 
 injectScript(scriptSrc, onSuccess, onFailure);
@@ -651,12 +654,91 @@ ___WEB_PERMISSIONS___
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: gtmOnSuccess is invoked on injectScript success
+  code: |-
+    // test that gtmOnSuccess() is called when injectScript succeeds
+    mock('injectScript', (url, onSuccess, onFailure) => {
+      onSuccess();
+    });
+
+    // Call runCode to run the template's code.
+    runCode();
+
+    // Verify that the tag finished successfully.
+    assertApi('gtmOnSuccess').wasCalled();
+- name: gtmOnFailure is invoked when injectScript fails
+  code: |-
+    // test gtmOnFailure() is called when injectScript fails
+    mock('injectScript', (url, onSuccess, onFailure) => {
+      onFailure();
+    });
+
+    // Call runCode to run the template's code.
+    runCode();
+
+    // Verify onFailure was called
+    assertApi('gtmOnFailure').wasCalled();
+- name: Don't make uneeded api calls when Krux function already exists in window
+  code: |+
+    // If Krux already exist in window it should be used and therefore there's no need to call other apis to create it
+    mock('copyFromWindow', (name) => 'Krux');
+
+    // Call runCode to run the template's code.
+    runCode();
+
+    assertApi('setInWindow').wasNotCalled();
+    assertApi('callInWindow').wasNotCalled();
+    assertApi('createQueue').wasNotCalled();
+    assertApi('copyFromWindow').wasCalled(1); // copyFromWindow was only called in the mock above
+
+
+
+- name: Do needed api calls when Krux function doesn't exist in window
+  code: "// If Krux doesn't exist in window, some setInWindow, createQueue and copyFromWindow\
+    \ should be called\nmock('copyFromWindow', (name) => undefined);\n\n// Call runCode\
+    \ to run the template's code.\nrunCode();\n\nassertApi('setInWindow').wasCalled();\n\
+    assertApi('createQueue').wasCalled();\nassertApi('copyFromWindow').wasCalled(2);\
+    \ // copyFromWindow called in the mock above and also in the template code "
+- name: Log debug messages when user checked this option
+  code: |-
+    // checks that debug messages are logged when the user selects this options in the template configuration
+    const mockSetData = {
+      consoleLogging: true
+    };
+
+
+    mock('injectScript', (url, onSuccess, onFailure) => {
+      onFailure();
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockSetData);
+
+    // Verify api calls
+    assertApi('logToConsole').wasCalled();
+- name: Don't log debug messages when user didn't check this option
+  code: |-
+    // checks that debug messages are logged when the user selects this options in the template configuration
+    const mockSetData = {
+      consoleLogging: false
+    };
+
+    mock('injectScript', (url, onSuccess, onFailure) => {
+      onFailure();
+    });
+
+    // Call runCode to run the template's code.
+    runCode(mockSetData);
+
+    // Verify api calls
+    assertApi('logToConsole').wasNotCalled();
+setup: ''
 
 
 ___NOTES___
 
-Developed with ❤ in IM by his technical team: Alfonso, Txema and Brais
+Developed with ❤ by: Alfonso, Txema and Brais
 
 Audience Studio documentation:
 https://konsole.zendesk.com/hc/en-us/articles/360000754674-JavaScript-Consent-Tag-Spec
