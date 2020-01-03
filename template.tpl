@@ -9,7 +9,7 @@ Google may provide), as modified from time to time.
 ___INFO___
 
 {
-  "displayName": "Audience Studio",
+  "displayName": "Salesforce Audience Studio",
   "description": "Formerly Salesforce DMP, Audience Studio can help you gain deep insights by unifying and capturing your data to strengthen customer relationships across every touchpoint with powerful data management",
   "categories": [
     "MARKETING"
@@ -336,6 +336,7 @@ const copyFromWindow = require('copyFromWindow');
 const createQueue = require('createQueue');
 const injectScript = require('injectScript');
 const setInWindow = require('setInWindow');
+const encodeUri = require('encodeUri');
 
 const log = data.consoleLogging ? require('logToConsole') : (() => {});
 // check if the object is empty
@@ -383,7 +384,7 @@ const callback = (errors, body) => {
 
 };
 
-const scriptSrc = 'https://cdn.krxd.net/controltag/' + data.dataId + '.js';
+const scriptSrc = encodeUri('https://cdn.krxd.net/controltag/' + data.dataId + '.js');
 const namespaceId = data.nsId;
 const route = 'consent:' + data.route;
 
@@ -738,7 +739,7 @@ setup: ''
 
 ___NOTES___
 
-Developed with ❤ by: Alfonso, Txema and Brais
+Developed by: Alfonso, Txema and Brais
 
 Audience Studio documentation:
 https://konsole.zendesk.com/hc/en-us/articles/360000754674-JavaScript-Consent-Tag-Spec
