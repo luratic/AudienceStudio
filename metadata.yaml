@@ -1,6 +1,8 @@
 versions:
+  - sha: 5416b889f07febd00c10caf6f6ba38fd2ff2e837
+    changeNotes: New brand name and various fixes
   - sha: abffc511e6676105a8aea73579d38f2bbfd5449f
-  - changeNotes: Add unit tests.
+    changeNotes: Add unit tests.
   - sha: f8cfe2c90377303f669e4ff1161cbd6e92ebf06a
   - sha: 66a18fefe00237f84f7b7b0825aa81a03c057283
     changeNotes: Updated logo.
