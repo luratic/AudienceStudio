@@ -1,4 +1,5 @@
-documentation: https://konsole.zendesk.com/hc/en-us/articles/360000754674-JavaScript-Consent-Tag-Spec
+homepage: "https://www.luratic.com"
+documentation: "https://www.luratic.com/posts/templates/tags/salesforce-audience-studio/"
 versions:
   - sha: 5416b889f07febd00c10caf6f6ba38fd2ff2e837
     changeNotes: New brand name and various fixes
