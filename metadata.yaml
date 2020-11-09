@@ -1,6 +1,10 @@
 homepage: "https://www.luratic.com"
 documentation: "https://www.luratic.com/posts/templates/tags/salesforce-audience-studio/"
 versions:
+  # Latest version
+  - sha: 0334f1b0dd9c84a9684356998244555abd38d43e
+    changeNotes: Improve documentation.
+  # Older versions
   - sha: 5416b889f07febd00c10caf6f6ba38fd2ff2e837
     changeNotes: New brand name and various fixes
   - sha: abffc511e6676105a8aea73579d38f2bbfd5449f
