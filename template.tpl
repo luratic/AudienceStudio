@@ -739,9 +739,11 @@ setup: ''
 
 ___NOTES___
 
-Developed by: Alfonso, Txema and Brais
-
-Audience Studio documentation:
-https://konsole.zendesk.com/hc/en-us/articles/360000754674-JavaScript-Consent-Tag-Spec
+Developed with ❤ by: Alfonso, Txema and Brais.
+Web: www.luratic.com
+Linkedin: 
+https://www.linkedin.com/in/braiscalvo/
+https://www.linkedin.com/in/alfonsorc/
+https://www.linkedin.com/in/txema-s%C3%A1nchez-a48482ba/
 
 
